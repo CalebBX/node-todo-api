@@ -5,6 +5,7 @@ const {mongoose} = require('./db/mongoose.js');
 const {Todo} = require('./models/todo.js');
 const {User} = require('./models/user.js');
 
+
 var app = express();
 
 app.use(bodyParser.json());
@@ -17,6 +18,14 @@ app.post('/todos', function(req, res){
         res.send(doc);
     },function(e){
         res.status(400).send(e);
+    });
+});
+
+app.get('/todos', function(req, res){
+    Todo.find().then(function(todos){
+        res.send({todos});
+    }, function(e){
+        res.status(400).send(e)
     });
 });
 
