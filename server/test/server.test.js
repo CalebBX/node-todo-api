@@ -98,7 +98,7 @@ describe('GET /todos/:id', function(){
 
     it('should return 404 for non-object ids', function(done){
         request(app)
-        .get(`/todos/123456abc`)
+        .get(`/todos/123456abasdc`)
         .expect(404)
         .end(done);
     })
@@ -136,7 +136,7 @@ describe('DELETE /todos/:id', function(){
 
     it('should return 404 if object id is invalid', function(done){
         request(app)
-        .delete(`/todos/123456abc`)
+        .delete(`/todos/123456abcdsa`)
         .expect(404)
         .end(done);
     });
