@@ -85,9 +85,21 @@ app.patch('/todos/:id', function(req, res){
         res.send({todo});
     }).catch(function(e){
         res.status(400).send();
-    })
+    });
 
-})
+});
+
+//POST USERS
+
+app.post('/users', function(req, res){
+    var body = _.pick(req.body,['email', 'password']);
+    var user = new User(body);
+    user.save().then(function(doc){
+        res.send(doc);
+    }).catch(function(e){
+        res.status(400).send(e);
+    });
+});
 
 
 app.listen(port, function(){
