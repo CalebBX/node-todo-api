@@ -16,6 +16,7 @@ describe('POST /todos', function(){
 
         request(app)
         .post('/todos')
+        .set('x-auth', users[0].tokens[0].token)
         .send({text: text})
         .expect(200)
         .expect(function(res){
@@ -38,6 +39,7 @@ describe('POST /todos', function(){
     it('Should not create todo with invalid body data', function(done){
         request(app)
         .post('/todos')
+        .set('x-auth', users[0].tokens[0].token)
         .send({})
         .expect(400)
         .end(function(err, res){
@@ -58,9 +60,10 @@ describe('GET /todos', function(){
     it('should get all todos', function(done){
         request(app)
         .get('/todos')
+        .set('x-auth', users[0].tokens[0].token)
         .expect(200)
         .expect(function(res){
-            expect(res.body.todos.length).toBe(2)
+            expect(res.body.todos.length).toBe(1)
         })
         .end(done);
     });
